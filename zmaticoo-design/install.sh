@@ -4,7 +4,7 @@
 #  zMaticoo DSP Design Skill 一键安装脚本
 #
 #  团队成员安装命令（复制发给团队即可）：
-#  bash <(curl -fsSL https://raw.githubusercontent.com/【你的GitHub用户名】/【你的仓库名】/main/install.sh)
+#  bash <(curl -fsSL https://raw.githubusercontent.com/ailsaweng1110-droid/eclicktech-design/main/zmaticoo-design/install.sh)
 #
 #  规范更新后，团队成员执行：
 #  update-zmaticoo-skill
@@ -12,25 +12,11 @@
 
 set -e
 
-# ────────────────────────────────────────────
-# 【需要替换】第1处：填写你的 GitHub 用户名和仓库名
-# 格式：用户名/仓库名
-# 例如：zmaticoo-team/design-system
-# ────────────────────────────────────────────
-REPO="【你的GitHub用户名】/【你的仓库名】"
+REPO="ailsaweng1110-droid/eclicktech-design"
 
-# ────────────────────────────────────────────
-# 【需要替换】第2处：填写 skill 文件所在的分支名
-# 通常是 main 或 master，保持默认即可
-# ────────────────────────────────────────────
 BRANCH="main"
 
-# ────────────────────────────────────────────
-# 【需要替换】第3处：填写 skill 文件在 repo 中的路径
-# 如果你把文件放在 repo 根目录的 .claude/skills/zmaticoo-design/ 下，保持默认即可
-# 如果放在其他位置（如 design/skills/zmaticoo-design/），需要修改
-# ────────────────────────────────────────────
-SKILL_PATH=".claude/skills/zmaticoo-design"
+SKILL_PATH="zmaticoo-design"
 
 # ============================================================
 # 以下内容无需修改
