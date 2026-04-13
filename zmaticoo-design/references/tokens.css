@@ -1,0 +1,337 @@
+/* =============================================
+   Design Tokens — zMaticoo DSP
+   提取自：zMaticoo DSP (Figma: 7da8NWsTXC3o0F5vHRjDfD / node: 4079:61088 模版画布)
+   生成时间：2026-04-13（v3，全量 11 页面覆盖）
+   工具：design-spec-extractor v4.0
+   页面覆盖（11/11）：
+     1. 注册-邮箱已验证-输入校验
+     2. 无账号-创建商务中心
+     3. Adset-Create new
+     4. Campaign-Subsidy Budget(USD)
+     5. Report-Standard Report
+     6. Add Member01（含 Drawer + Tag + Tooltip）
+     7. 商务中心
+     8. 商务中心-Payment management
+     9. 商务中心-Transactions
+    10. 商务中心-Payment management-Add balance（Modal）
+    11. App Event
+   引入方式：import './design-system/tokens.css'
+   ============================================= */
+
+:root {
+
+  /* ══════════════════════════════════════════
+     BRAND COLORS
+     ══════════════════════════════════════════ */
+
+  --color-primary:              #0251FF;   /* ✅ 主品牌蓝，链接/激活/mark/info */
+  --color-primary-hover:        #0244D6;   /* [推断] */
+  --color-primary-active:       #0138B3;   /* [推断] */
+  --color-primary-light:        #E6F2FF;   /* ✅ 激活导航背景/tag-admin-bg，light/eclicktech/1 */
+  --color-primary-mid:          #2B75FF;   /* ✅ light/eclicktech/5 */
+  --color-secondary:            #262626;   /* ✅ 主操作按钮/深色文字，Primary/6 */
+
+  /* Brand Extended */
+  --color-brand-navy-deep:      #001366;   /* ✅ 顶部导航栏背景，light/eclicktech/10 */
+  --color-brand-navy-mid:       #001E8C;   /* ✅ 注册页底部色带，light/eclicktech/9 */
+  --color-brand-sky:            #7AD3FF;   /* ✅ 注册页装饰背景，light/bluesky/3 */
+  --color-brand-avatar-bg:      #26367D;   /* ✅ 顶部导航用户头像背景 */
+  --color-brand-blue:           #0090FF;   /* ✅ light/bluesky/6 */
+
+
+  /* ══════════════════════════════════════════
+     FUNCTIONAL COLORS（全部设计师确认）
+     ══════════════════════════════════════════ */
+
+  /* Error */
+  --color-error:                #D4004A;   /* ✅ 设计师确认；light/Dust Red/7 */
+  --color-error-hover:          #B00039;   /* [推断] */
+  --color-error-light:          rgba(249, 13, 88, 0.10); /* ✅ error focus ring */
+
+  /* Success */
+  --color-success:              #00941E;   /* ✅ 设计师确认 */
+  --color-success-hover:        #007A18;   /* [推断] */
+  --color-success-light:        #E6F9EA;   /* [推断] */
+
+  /* Warning */
+  --color-warning:              #D95700;   /* ✅ 设计师确认；light/orange/7 */
+  --color-warning-hover:        #B84900;   /* [推断] */
+  --color-warning-light:        #FFF3E6;   /* [推断] */
+  --color-warning-dot:          #D95700;   /* ✅ dot 与功能色一致 */
+
+  /* Info */
+  --color-info:                 #0251FF;   /* ✅ 设计师确认，与 primary 一致 */
+  --color-info-hover:           #0244D6;   /* [推断] */
+  --color-info-light:           #E6F2FF;   /* ✅ 与 primary-light 一致 */
+  --color-info-dot:             #0251FF;   /* ✅ dot 与功能色一致 */
+
+
+  /* ══════════════════════════════════════════
+     STATUS BADGE DOTS（✅ 设计师确认：dot 与功能色一致）
+     ══════════════════════════════════════════ */
+
+  --color-status-approved:      #00941E;   /* ✅ Approved / Active dot，与 Success 一致 */
+  --color-status-rejected:      #D4004A;   /* ✅ Rejected dot = error */
+  --color-status-reviewing:     #0251FF;   /* ✅ Under review dot = info/primary */
+  --color-status-active:        #00941E;   /* ✅ Active dot，与 Success 一致 */
+
+
+  /* ══════════════════════════════════════════
+     ROLE TAG COLORS（商务中心成员角色标签）
+     ══════════════════════════════════════════ */
+
+  --color-tag-admin-bg:         #E6F2FF;   /* ✅ Admin tag 背景，light/eclicktech/1 */
+  --color-tag-admin-text:       #0251FF;   /* ✅ Admin tag 文字，light/eclicktech/6 */
+  --color-tag-operator-bg:      #E6F8FF;   /* ✅ Operator tag 背景，light/bluesky/1 */
+  --color-tag-operator-text:    #0099AD;   /* ✅ Operator tag 文字，light/Cyan/7 */
+  --color-tag-analyst-bg:       #F4F8E8;   /* ✅ Analyst tag 背景 */
+  --color-tag-analyst-text:     #587A00;   /* ✅ Analyst tag 文字，light/Lime/9 */
+
+
+  /* ══════════════════════════════════════════
+     NEUTRAL - BACKGROUND
+     ══════════════════════════════════════════ */
+
+  --color-bg-page:              #F5F5F5;   /* ✅ 页面底色，gray/3 */
+  --color-bg-surface:           #FAFAFA;   /* ✅ 内容区/表格头/次级面板/dropdown-hover，gray/2 */
+  --color-bg-card:              #FFFFFF;   /* ✅ 卡片/表单/Modal/Drawer，gray/1 */
+  --color-bg-modal:             #FFFFFF;   /* ✅ Modal 弹窗，Conditional/pop-over */
+  --color-bg-drawer:            #FFFFFF;   /* ✅ Drawer 侧边弹出 */
+  --color-bg-input:             #FFFFFF;   /* ✅ 输入框 */
+  --color-bg-input-addon:       #FAFAFA;   /* ✅ 输入框 addon 区域（货币单位等）*/
+  --color-bg-nav-active:        #E6F2FF;   /* ✅ 激活导航项 */
+  --color-bg-tooltip:           #262626;   /* ✅ Tooltip 背景，Tooltip/.85 */
+  --color-bg-tag-closable:      #FAFAFA;   /* ✅ 可关闭 tag 背景 */
+
+  /* Overlay */
+  --color-overlay:              rgba(38, 38, 38, 0.32); /* ✅ Modal/Drawer 蒙层 */
+
+
+  /* ══════════════════════════════════════════
+     NEUTRAL - BORDER
+     ══════════════════════════════════════════ */
+
+  --color-border-default:       #D9D9D9;   /* ✅ 输入框/选择器/tag，Conditional/border */
+  --color-border-hover:         #0251FF;   /* [推断] */
+  --color-border-focus:         #0251FF;   /* [推断] */
+  --color-border-disabled:      #D9D9D9;   /* [推断] */
+  --color-border-error:         #D4004A;   /* ✅ error state 输入框/tag */
+  --color-border-warning:       #D95700;   /* ✅ warning state 输入框/tag */
+  --color-border-section:       #F0F0F0;   /* ✅ 分割线/表格行，Conditional/divider */
+
+
+  /* ══════════════════════════════════════════
+     NEUTRAL - TEXT（五级体系）
+     ══════════════════════════════════════════ */
+
+  --color-text-primary:         #141414;   /* ✅ 主要文字，Character/Title .92 */
+  --color-text-body:            #262626;   /* ✅ 正文/输入，Character/Primary .85 */
+  --color-text-secondary:       #8C8C8C;   /* ✅ 次要/ID/导航分组标签，Character/Secondary .45 */
+  --color-text-disabled:        #8C8C8C;   /* 禁用态 */
+  --color-text-placeholder:     #BFBFBF;   /* ✅ Character/Disabled & Placeholder .25 */
+  --color-text-inverse:         #FFFFFF;   /* ✅ 深色背景反色，Character/Primary(inverse) */
+  --color-text-link:            #0251FF;   /* ✅ 链接，Character/mark */
+  --color-text-error:           #D4004A;   /* ✅ 错误提示 */
+  --color-text-caption:         #BFBFBF;   /* ✅ 版权/辅助 */
+  --color-text-nav-label:       #8C8C8C;   /* ✅ 导航分组标签 */
+  --color-text-nav-active:      #0251FF;   /* ✅ 激活导航文字 */
+  --color-text-tooltip:         #FFFFFF;   /* ✅ Tooltip 文字 */
+
+  /* Divider */
+  --color-divider:              #F0F0F0;   /* ✅ Conditional/divider */
+
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY
+     ══════════════════════════════════════════ */
+
+  --font-family-base:           'Montserrat', 'Noto Sans JP', sans-serif;
+  --font-family-mono:           'JetBrains Mono', 'Courier New', monospace; /* [推断] */
+
+  /* Font Sizes */
+  --font-size-xs:               12px;   /* ✅ Footnote/description：导航分组标签/表格次级/tag文字 */
+  --font-size-sm:               14px;   /* ✅ Body：正文/表单/表格/tooltip/32px按钮 */
+  --font-size-base:             16px;   /* ✅ H5：40px按钮/导航/modal&drawer标题 */
+  --font-size-md:               20px;   /* ✅ 卡片标题 */
+  --font-size-lg:               24px;   /* ✅ H3：页面主标题 */
+  --font-size-xl:               40px;   /* ✅ Display：品牌 hero */
+
+  /* Font Weights */
+  --font-weight-regular:        400;
+  --font-weight-medium:         500;
+  --font-weight-semibold:       600;
+  --font-weight-bold:           700;
+
+  /* Line Heights */
+  --line-height-xs:             20px;   /* ✅ 12px → 20px，Footnote */
+  --line-height-sm:             22px;   /* ✅ 14px → 22px，Body */
+  --line-height-base:           24px;   /* ✅ 16px → 24px，H5 */
+  --line-height-md:             28px;   /* ✅ 20px → 28px */
+  --line-height-lg:             32px;   /* ✅ 24px → 32px */
+  --line-height-hero:           1.2;    /* ✅ 40px hero */
+
+
+  /* ══════════════════════════════════════════
+     SPACING
+     ══════════════════════════════════════════ */
+
+  --spacing-unit:               4px;    /* 基础步进单位 */
+  --spacing-xs:                 4px;    /* icon 间距、tag icon-text gap */
+  --spacing-sm:                 8px;    /* form label-input / btn gap / table action gap */
+  --spacing-md:                 16px;   /* 表单项间距 / modal 内边距 / nav item px */
+  --spacing-lg:                 24px;   /* 内容区 padding / modal px / drawer body p */
+  --spacing-xl:                 32px;
+  --spacing-2xl:                40px;
+  --spacing-3xl:                48px;
+  --spacing-4xl:                56px;
+  --spacing-5xl:                64px;   /* topbar 高度 */
+
+  /* Input spacing */
+  --spacing-input-px:           12px;   /* ✅ 输入框水平内边距 */
+  --spacing-input-py:           9px;    /* ✅ 40px 输入框垂直内边距 */
+  --spacing-input-py-sm:        5px;    /* ✅ 32px 输入框垂直内边距（modal/drawer 内）*/
+
+  /* Button spacing */
+  --spacing-btn-lg-px:          13px;   /* ✅ 大按钮(40px)水平内边距 */
+  --spacing-btn-lg-py:          8px;    /* ✅ 大按钮(40px)垂直内边距 */
+  --spacing-btn-md-px:          13px;   /* ✅ 中按钮(32px)水平内边距（含 primary / ghost）*/
+  --spacing-btn-md-py:          5px;    /* ✅ 中按钮(32px)垂直内边距 */
+  --spacing-btn-md-px-ghost:    17px;   /* ✅ 中按钮 ghost 水平内边距（无图标时更宽）*/
+  --spacing-btn-icon-gap:       8px;    /* ✅ 按钮图标与文字间距 */
+
+  /* Form spacing */
+  --spacing-form-label-mb:      8px;    /* ✅ label 到 input */
+  --spacing-form-item-gap:      16px;   /* ✅ 表单项间距 */
+  --spacing-form-section-gap:   24px;   /* ✅ 表单组间距 */
+
+  /* Modal / Drawer spacing */
+  --spacing-modal-header-px:    24px;   /* ✅ */
+  --spacing-modal-header-py:    16px;   /* ✅ */
+  --spacing-modal-content-px:   24px;   /* ✅ */
+  --spacing-modal-content-pt:   16px;   /* ✅ */
+  --spacing-modal-content-pb:   24px;   /* ✅ */
+  --spacing-modal-footer-px:    16px;   /* ✅ Modal footer（比 header 窄）*/
+  --spacing-modal-footer-py:    12px;   /* ✅ */
+  --spacing-drawer-header-px:   24px;   /* ✅ */
+  --spacing-drawer-header-py:   16px;   /* ✅ */
+  --spacing-drawer-body-p:      24px;   /* ✅ */
+  --spacing-drawer-footer-px:   24px;   /* ✅ */
+  --spacing-drawer-footer-py:   16px;   /* ✅ */
+
+  /* Navigation spacing */
+  --spacing-nav-px:             16px;   /* ✅ 导航项水平内边距 */
+  --spacing-nav-label-py:       4px;    /* ✅ 导航分组标签垂直内边距 */
+
+  /* Table spacing */
+  --spacing-table-cell-px:      16px;   /* ✅ */
+  --spacing-table-cell-pt:      16px;   /* ✅ 单行数据行（Payment）*/
+  --spacing-table-cell-pb:      19px;   /* ✅ 单行数据行（Payment）*/
+  --spacing-table-cell-py-sm:   12px;   /* ✅ 单行文本行（User列表等，pt-12px pb-13px）*/
+  --spacing-table-header-pt:    12px;   /* ✅ */
+  --spacing-table-header-pb:    13px;   /* ✅ */
+
+  /* Tag spacing */
+  --spacing-tag-px:             8px;    /* ✅ 角色 tag px */
+  --spacing-tag-closable-px:    6px;    /* ✅ 可关闭 tag px */
+  --spacing-tag-py:             1px;    /* ✅ tag py */
+
+  /* Tooltip spacing */
+  --spacing-tooltip-px:         8px;    /* ✅ */
+  --spacing-tooltip-py:         6px;    /* ✅ */
+
+
+  /* ══════════════════════════════════════════
+     RADIUS
+     ══════════════════════════════════════════ */
+
+  --radius-xs:                  2px;    /* ✅ Modal/Drawer/Tooltip/Tag/Dropdown/pagination item */
+  --radius-sm:                  4px;    /* ✅ 主圆角：按钮/输入框（error state 已确认统一为4px）*/
+  --radius-md:                  8px;    /* ✅ 内容子卡片/用户头像/dropdown-icon */
+  --radius-lg:                  12px;   /* ✅ 主内容区容器 */
+  --radius-nav-active:          20px;   /* ✅ 导航激活项 pill */
+  --radius-panel:               24px;   /* ✅ 注册页侧面板 */
+  --radius-full:                9999px; /* 完整圆形 */
+  --radius-badge:               100px;  /* ✅ 状态 dot badge */
+
+
+  /* ══════════════════════════════════════════
+     SHADOW
+     ══════════════════════════════════════════ */
+
+  --shadow-none:                none;
+
+  /* ✅ 设计稿验证：Modal/Drawer/Dropdown 弹层阴影 */
+  --shadow-popup:               0px 3px 6px -4px rgba(0,0,0,0.12),
+                                0px 6px 16px 0px rgba(0,0,0,0.08),
+                                0px 9px 28px 8px rgba(0,0,0,0.05);
+
+  /* ✅ Tooltip 阴影 */
+  --shadow-tooltip:             0px 2px 8px rgba(0, 0, 0, 0.15);
+
+  /* [推断] 待补充 */
+  --shadow-sm:                  0px 1px 4px rgba(0,0,0,0.08);
+  --shadow-md:                  0px 2px 8px rgba(0,0,0,0.12);
+  --shadow-lg:                  0px 4px 16px rgba(0,0,0,0.16);
+
+  /* ✅ 表单 error + focus ring */
+  --shadow-error-ring:          0px 0px 0px 2px rgba(249,13,88,0.10);
+
+  /* ✅ 分割线（用 box-shadow 实现，Figma 样式名：border & divider）*/
+  --shadow-border-top:          inset 0px 1px 0px 0px #F0F0F0;
+  --shadow-border-bottom:       inset 0px -1px 0px 0px #F0F0F0;
+
+
+  /* ══════════════════════════════════════════
+     LAYOUT
+     ══════════════════════════════════════════ */
+
+  --layout-page-max-width:      1440px;
+  --layout-topbar-height:       64px;   /* ✅ */
+  --layout-sidebar-width:       224px;  /* ✅ 商务中心左侧导航 */
+  --layout-sidebar-width-adset: 226px;  /* ✅ Adset 步骤导航 */
+  --layout-content-padding:     24px;   /* ✅ */
+  --layout-content-radius:      12px;   /* ✅ 主内容区 */
+  --layout-modal-width:         640px;  /* ✅ */
+  --layout-drawer-width:        800px;  /* ✅ */
+
+  /* Button heights（四尺寸体系 ✅）*/
+  --layout-btn-height-xl:       40px;   /* ✅ 大按钮：注册/创建页 Continue 按钮 */
+  --layout-btn-height-md:       32px;   /* ✅ 中按钮：Modal/Drawer footer / 表格操作区 */
+  --layout-btn-height-sm:       24px;   /* ✅ 小按钮：表格内 inline 操作按钮 */
+  /* 注：链接/文本按钮 height = auto（inline），font 14px Medium #0251FF */
+
+  /* Input heights */
+  --layout-input-height:        40px;   /* ✅ 标准输入框 */
+  --layout-input-height-sm:     32px;   /* ✅ 紧凑输入框（Modal/Drawer 内）*/
+
+  /* Component heights */
+  --layout-table-row-height:    55px;   /* ✅ Payment 页双行数据行高 */
+  --layout-table-row-height-sm: 47px;   /* ✅ 单行文本行高（Member 列表等）*/
+  --layout-table-header-height: 47px;   /* ✅ pt-12px + 22px + pb-13px */
+  --layout-nav-item-height:     40px;   /* ✅ 导航项高度 */
+  --layout-badge-dot-size:      6px;    /* ✅ 状态 badge dot */
+  --layout-tag-icon-size:       10.5px; /* ✅ 角色 tag 内图标 */
+  --layout-btn-icon-size:       14px;   /* ✅ 按钮内图标 */
+  --layout-nav-icon-size:       16px;   /* ✅ 导航图标 */
+
+}
+
+/*
+  ✅ 已全量覆盖（11/11 页面）：
+     注册 / 创建商务中心 / Adset / Campaign表格 / Report / Add Member / 商务中心 /
+     Payment Management / Transactions / Add Balance(Modal) / App Event
+
+  ✅ 设计师确认项：
+     · 功能色：Success #00941E | Warning #D95700 | Info #0251FF
+     · badge dot 与功能色完全一致，Approved / Active dot = #00941E
+     · Error 圆角统一为 4px（--radius-sm）
+
+  ⚠️ 仍为推断（3 项低优先级）：
+     · hover/focus 边框色（推断 #0251FF）
+     · success-light / warning-light 背景色
+     · shadow-sm / md（非 popup 类阴影）
+
+  引入方式：
+  import './design-system/tokens.css'
+  或：<link rel="stylesheet" href="design-system/tokens.css">
+*/
