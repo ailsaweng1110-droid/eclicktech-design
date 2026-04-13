@@ -532,21 +532,254 @@ frame.itemSpacing = 8;                  // gap
 
 ---
 
-## 十一、写入流程
+## 十一、组件复用策略（重要）
+
+**每次写入前，必须按以下优先级决定如何获取组件，不得跳过步骤直接手写。**
+
+```
+优先级 1：使用文件内已有组件（search_design_system + importComponentByKeyAsync）
+优先级 2：引入开源组件库（需与用户确认）
+优先级 3：AI 直接手写组件（兜底，仅在前两步均不可用时）
+```
+
+---
+
+### 优先级 1：使用文件内已有组件（首选）
+
+**步骤：**
+
+```
+① 调用 search_design_system 搜索组件名
+② 从结果中取 key 字段
+③ 在 use_figma 脚本中用 importComponentByKeyAsync(key) 引入
+④ createInstance() 生成实例放入画布
+```
+
+**代码模板：**
+
+```js
+// 搜索并引入已有组件（以 button 为例）
+const comp = await figma.importComponentByKeyAsync('组件的 key');
+const instance = comp.createInstance();
+instance.resize(160, 32);
+// 设置变体属性（如有）
+instance.setProperties({ 'size': 'medium', 'type': 'primary' });
+parentFrame.appendChild(instance);
+
+return { createdNodeIds: [instance.id] };
+```
+
+**zMaticoo DSP 文件已确认的组件（共 87 个，全部可通过 search_design_system 找到）：**
+
+#### 📊 表格系列（9 个）
+
+| 组件名 | 引用次数 | 说明 |
+|--------|---------|------|
+| `table-cell/text` | 5250x | 表格文本单元格 |
+| `table-cell/status` | 886x | 表格状态单元格（含 badge）|
+| `components/table-column/text` | 830x | 表格文本列 |
+| `table-header/default` | 641x | 表格列头 |
+| `components/table-column/check-box` | 118x | 表格 checkbox 列 |
+| `table/column-based` | 111x | 列式表格容器 |
+| `components/table-column/status` | 82x | 表格状态列 |
+| `components/table-column/switch` | 44x | 表格开关列 |
+| `components/table-cell/checkbox` | 33x | 表格 checkbox 单元格 |
+
+#### 🔘 按钮 & 操作（5 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `button` | 955x | 按钮（多尺寸/多变体）| 3863:38186 |
+| `button-group` | 153x | 按钮组 | 3863:39264 |
+| `components/dropdown/menu-item` | 127x | 下拉菜单项 | — |
+| `dropdown-trigger` | 81x | 下拉触发器 | — |
+| `dropdown-menu` | 31x | 下拉菜单 | — |
+
+#### 📝 表单系列（24 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `vertical-form-item/input` | 226x | 垂直表单项-输入框 | — |
+| `checkbox` | 207x | 复选框 | — |
+| `vertical-form-item/radio` | 180x | 垂直表单项-单选 | — |
+| `vertical-form-item/select` | 172x | 垂直表单项-选择器 | — |
+| `input` | 162x | 文本输入框 | 85:1655 |
+| `search-box` | 137x | 搜索框 | 142:3014 |
+| `select` | 96x | 下拉选择器 | 3863:40846 |
+| `date-picker` | 89x | 日期选择器 | — |
+| `form-item/input` | 81x | 表单项-输入框 | — |
+| `components/radio` | 50x | 单选框 | — |
+| `vertical-form-item/textarea` | 44x | 垂直表单项-多行文本 | — |
+| `vertical-form-item/radio-button-group` | 43x | 垂直表单项-单选按钮组 | — |
+| `form` | 28x | 表单容器 | 3930:104894 |
+| `form-item/radio-button` | 25x | 表单项-单选按钮 | — |
+| `form-item/upload` | 25x | 表单项-上传 | — |
+| `form-item/select` | 22x | 表单项-选择器 | — |
+| `form-item/button` | 16x | 表单项-按钮 | — |
+| `form-item/upload-files` | 14x | 表单项-上传文件列表 | — |
+| `vertical-form-item/date-picker` | 13x | 垂直表单项-日期选择 | — |
+| `vertical-form-item/switch` | 11x | 垂直表单项-开关 | — |
+| `time-picker` | 9x | 时间选择器 | — |
+| `vertical-form-item/checkbox` | 9x | 垂直表单项-复选框 | — |
+| `form-item/textarea` | 8x | 表单项-多行文本 | — |
+| `password` | — | 密码输入框 | 690:9533 |
+
+#### 🗂 导航 & Tab（7 个）
+
+| 组件名 | 引用次数 | 说明 |
+|--------|---------|------|
+| `menu` | 158x | 顶部导航菜单 |
+| `components/tab-vertical` | 161x | 垂直 Tab 子项 |
+| `tabs/card` | 75x | Card 式 Tab |
+| `tabs/left` | 39x | 垂直 Tab（左侧步骤）|
+| `inline-menu-item/1st-level` | 36x | 侧边导航菜单项 |
+| `tabs/top` | 33x | 水平 Tab |
+| `select（导航顶部）` | — | 顶部导航内选择器 | 79:7660 |
+
+#### 🪟 弹层（6 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `drawer` | 45x | Drawer 侧边抽屉 | — |
+| `modal/basic` | 44x | Modal 弹窗 | — |
+| `alert` | 44x | 警告提示 | — |
+| `popconfirm` | 16x | 气泡确认框 | — |
+| `tooltip` | 16x | 文字提示 | 525:7982 |
+| `modal/Delete` | 5x | 删除确认 Modal | — |
+
+#### 🏷 标签 & 状态（5 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `badge/status` | 271x | 状态 Badge | 3930:105552 |
+| `tag/default` | 110x | 标签 | — |
+| `statistic` | 28x | 统计数字 | — |
+| `badge/dot` | — | dot badge | 115:2688 |
+| `tag/closable/small` | 7x | 可关闭小标签 | — |
+| `tag/ec` | 5x | 角色标签（Admin/Operator）| — |
+
+#### 📄 分页 & 步骤（4 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `pagination` | 111x | 分页 | 3863:41543 |
+| `steps` | 57x | 步骤条 | 3863:42705 |
+| `components/steps-item-icon` | 56x | 步骤图标 | — |
+| `scrollbar` | 41x | 滚动条 | — |
+
+#### 📤 上传（6 个）
+
+| 组件名 | 引用次数 | 说明 |
+|--------|---------|------|
+| `upload-picture-list-item` | 54x | 图片上传列表项 |
+| `upload-picture-card` | 24x | 图片上传卡片 |
+| `upload` | 18x | 上传 |
+| `upload-picture` | 7x | 图片上传 |
+
+#### 🔧 通用（11 个）
+
+| 组件名 | 引用次数 | 说明 | 已知 Node ID |
+|--------|---------|------|-------------|
+| `divider` | 442x | 分割线 | 85:7621 |
+| `icon-wrapper` | 366x | 图标容器 | 1:451 |
+| `text/title` | 87x | 标题文本 | — |
+| `grid` | 16x | 栅格 | — |
+| `progress-scrubber/basic` | 14x | 进度条控件 | — |
+| `text/text` | 13x | 正文文本 | — |
+| `list` | 13x | 列表 | — |
+| `progress` | 12x | 进度条 | — |
+| `empty/customize` | 9x | 空状态 | — |
+| `components/header` | 6x | 页面头部 | — |
+| `components/footer` | 6x | 页面底部 | — |
+
+> **使用 search_design_system 时**，搜索关键词尽量简短：`button` / `input` / `radio` / `tag`，避免搜索不到。
+
+**search_design_system 搜索示例：**
+
+```
+# 在 use_figma 调用前，先调用 search_design_system
+search_design_system("button")
+search_design_system("radio")
+search_design_system("tag")
+search_design_system("checkbox")
+search_design_system("date-picker")
+```
+
+---
+
+### 优先级 2：引入开源组件库（未在文件中找到时）
+
+如果 `search_design_system` 搜索无结果，**暂停写入**，询问用户：
+
+```
+在 zMaticoo DSP 文件中未找到「xxx」组件。
+请选择引入方式：
+
+A. Ant Design（antd）— 文件现有组件风格接近 antd，推荐
+B. Semi Design — 字节系 B 端组件库
+C. 跳过，由 AI 按设计规范手写该组件
+
+请告知选择，或直接说「用 A」。
+```
+
+> **推荐选 Ant Design**：文件现有组件（button、input、select、table、pagination 等）在视觉风格上与 antd 高度接近，引入后一致性最好。
+
+---
+
+### 优先级 3：AI 手写组件（兜底）
+
+仅在以下两种情况才手写：
+- 用户明确选择「不引入开源库」
+- 该组件在任何开源库中均不存在（极少见）
+
+手写时**严格遵循第九节组件规范**，不得使用与规范不符的颜色、圆角、字体值。
+
+---
+
+### 决策流程图
+
+```
+需要某个组件（如 radio / tag / date-picker）
+         │
+         ▼
+search_design_system 搜索
+         │
+    ┌────┴────┐
+  找到        未找到
+    │            │
+    ▼            ▼
+importComponent  询问用户选择开源库
+createInstance        │
+    │         ┌───────┴───────┐
+    │      选 A/B           选 C（手写）
+    │         │                │
+    ▼         ▼                ▼
+  ✅ 完成   引入组件库实例    按第九节规范手写
+                │
+                ▼
+             ✅ 完成
+```
+
+---
+
+## 十二、写入流程
 
 ```
 1. 执行 /figma-use（加载官方写入 skill）
 2. 执行 /zmaticoo-design（加载本设计规范 skill）
 3. get_design_context 读取目标节点，确认现有结构
-4. 根据第九节组件规范，编写 use_figma JavaScript
-5. 执行 use_figma，传入 skillNames: "zmaticoo-design,figma-use"
+4. 按第十一节组件复用策略，决定每个组件的获取方式：
+   - 已有组件 → search_design_system 搜索 key → importComponentByKeyAsync
+   - 未找到 → 询问用户是否引入开源库
+   - 均无 → 按第九节规范手写
+5. 编写 use_figma JavaScript，执行写入
 6. 验证返回的 node ID，必要时再次 get_design_context 确认结果
 7. 如有异常，读取 error message，修正后重试（不要盲目重试）
 ```
 
 ---
 
-## 十二、常见错误处理
+## 十三、常见错误处理
 
 | 错误 | 原因 | 解决方案 |
 |------|------|---------|
@@ -555,12 +788,14 @@ frame.itemSpacing = 8;                  // gap
 | `Cannot read properties of null` | node ID 不存在 | 先用 get_metadata 确认节点 ID |
 | `insertChild` 报错 | 父节点不是 Frame | 确认目标节点类型为 FRAME |
 | 写入后尺寸不对 | Auto Layout 未设置 | 检查 layoutMode 和 Sizing Mode |
+| `importComponentByKeyAsync` 失败 | key 不正确或无访问权限 | 重新用 search_design_system 确认 key |
 
 ---
 
-## 十三、参考文件
+## 十四、参考文件
 
 - 完整设计规范：`./references/DESIGN_SPEC.md`
 - Design Token CSS：`./references/tokens.css`
 - Figma Plugin API 文档：https://developers.figma.com/docs/plugins/api/global-objects/
 - Figma MCP 写入文档：https://developers.figma.com/docs/figma-mcp-server/write-to-canvas/
+- Figma search_design_system 文档：https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/
