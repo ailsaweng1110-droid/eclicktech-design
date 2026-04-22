@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "source": "https://linear.app",
+    "input_type": "url",
+    "extracted": "2026-04-22",
+    "theme": "both",
+    "style": "ultra-minimal dark-first SaaS，极致精准，工程师审美",
+    "accuracy_note": "颜色来自官方 brand 页面及视觉观察；间距/动效部分推测，见 _inferred 字段"
+  },
+
+  "color": {
+    "light": {
+      "primary": "#5E6AD2",
+      "primary.hover": "#4F5BBF",
+      "primary.foreground": "#FFFFFF",
+      "bg.default": "#FFFFFF",
+      "bg.subtle": "#F7F8F9",
+      "bg.raised": "#F0F1F3",
+      "surface": "#FFFFFF",
+      "text.primary": "#1A1A1A",
+      "text.secondary": "#6B6F76",
+      "text.tertiary": "#9EA3AB",
+      "text.disabled": "#C2C5CC",
+      "border": "#E5E7EB",
+      "border.strong": "#D1D5DB",
+      "danger": "#E5484D",
+      "success": "#30A46C",
+      "warning": "#F5A623",
+      "info": "#5E6AD2"
+    },
+    "dark": {
+      "primary": "#5E6AD2",
+      "primary.hover": "#6B78E0",
+      "primary.foreground": "#FFFFFF",
+      "bg.default": "#0F0F10",
+      "bg.subtle": "#1A1A1C",
+      "bg.raised": "#222326",
+      "surface": "#1A1A1C",
+      "text.primary": "#F4F5F8",
+      "text.secondary": "#9EA3AB",
+      "text.tertiary": "#6B6F76",
+      "text.disabled": "#3D4046",
+      "border": "#2D2D30",
+      "border.strong": "#3D4046",
+      "danger": "#E5484D",
+      "success": "#30A46C",
+      "warning": "#F5A623",
+      "info": "#5E6AD2"
+    }
+  },
+
+  "font": {
+    "family.display": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+    "family.display_inferred": "从页面 font-face 及渲染字形推断为 Inter，几何无衬线，字距偏紧",
+    "family.body": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+    "family.mono": "\"Geist Mono\", \"Fira Code\", Consolas, monospace",
+    "family.mono_inferred": "代码块字形特征接近 Geist Mono，等宽，字形现代",
+    "size.xs": "11px",
+    "size.sm": "12px",
+    "size.base": "14px",
+    "size.lg": "16px",
+    "size.xl": "18px",
+    "size.2xl": "22px",
+    "size.3xl": "28px",
+    "size.4xl": "36px",
+    "size.5xl": "52px",
+    "size.base_inferred": "Linear 界面密度高，正文基准为 14px 而非常规 16px",
+    "weight.regular": "400",
+    "weight.medium": "500",
+    "weight.semibold": "600",
+    "weight.bold": "700",
+    "lineHeight.tight": "1.2",
+    "lineHeight.base": "1.5",
+    "lineHeight.relaxed": "1.7",
+    "tracking.tight": "-0.03em",
+    "tracking.tight_inferred": "大标题字距明显偏紧，约 -0.03em，强调精准感",
+    "tracking.normal": "-0.01em",
+    "tracking.wide": "0.02em"
+  },
+
+  "space": {
+    "0": "0",
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "8": "32px",
+    "10": "40px",
+    "12": "48px",
+    "16": "64px",
+    "20": "80px",
+    "24": "96px",
+    "base_inferred": "从导航高度、列表行高、卡片 padding 归纳，基准单位为 4px"
+  },
+
+  "radius": {
+    "none": "0",
+    "sm": "3px",
+    "base": "5px",
+    "md": "7px",
+    "lg": "10px",
+    "xl": "14px",
+    "2xl": "20px",
+    "full": "9999px",
+    "note_inferred": "Linear 圆角偏小，整体感受精准克制，按钮约 5px，卡片约 10px"
+  },
+
+  "shadow": {
+    "none": "none",
+    "sm": "0 1px 2px rgba(0,0,0,0.08)",
+    "base": "0 2px 8px rgba(0,0,0,0.12), 0 0 1px rgba(0,0,0,0.08)",
+    "md": "0 4px 16px rgba(0,0,0,0.16), 0 0 1px rgba(0,0,0,0.1)",
+    "lg": "0 8px 32px rgba(0,0,0,0.2), 0 0 1px rgba(0,0,0,0.1)",
+    "xl": "0 16px 48px rgba(0,0,0,0.24), 0 0 1px rgba(0,0,0,0.08)",
+    "dark.base": "0 2px 8px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.04)",
+    "dark.md": "0 4px 16px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.06)",
+    "note_inferred": "暗色模式阴影以透明度加深为主，同时加细白边增强层次感"
+  },
+
+  "motion": {
+    "duration.fast": "100ms",
+    "duration.base": "150ms",
+    "duration.slow": "250ms",
+    "duration.base_inferred": "Linear 过渡极短，强调即时响应感，估算自导航 hover 和弹层出现",
+    "easing.default": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "easing.default_inferred": "偏 ease-out，快进慢出，符合界面响应感",
+    "easing.spring": "cubic-bezier(0.34, 1.2, 0.64, 1)",
+    "easing.enter": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+    "easing.exit": "cubic-bezier(0.4, 0.0, 1, 1)"
+  },
+
+  "layout": {
+    "maxWidth.sm": "640px",
+    "maxWidth.md": "768px",
+    "maxWidth.lg": "1024px",
+    "maxWidth.xl": "1200px",
+    "maxWidth.content": "680px",
+    "maxWidth.content_inferred": "Method 文章页正文宽度约 680px，偏窄，强调阅读专注感",
+    "grid.columns": "12",
+    "grid.gutter": "24px",
+    "breakpoint.sm": "640px",
+    "breakpoint.md": "768px",
+    "breakpoint.lg": "1024px",
+    "breakpoint.xl": "1280px",
+    "breakpoint.2xl": "1536px"
+  }
+}

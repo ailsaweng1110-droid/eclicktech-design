@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Design System Preview</title>
+  <style>
+    /* ============================================================
+       TOKEN DEFINITIONS
+       Source: https://linear.app | Generated: 2026-04-22
+    ============================================================ */
+    :root, [data-theme="light"] {
+      --color-primary: #5E6AD2;
+      --color-primary-hover: #4F5BBF;
+      --color-primary-foreground: #FFFFFF;
+      --color-bg-default: #FFFFFF;
+      --color-bg-subtle: #F7F8F9;
+      --color-bg-raised: #F0F1F3;
+      --color-surface: #FFFFFF;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #6B6F76;
+      --color-text-tertiary: #9EA3AB;
+      --color-text-disabled: #C2C5CC;
+      --color-border: #E5E7EB;
+      --color-border-strong: #D1D5DB;
+      --color-danger: #E5484D;
+      --color-success: #30A46C;
+      --color-warning: #F5A623;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
+      --shadow-base: 0 2px 8px rgba(0,0,0,0.12), 0 0 1px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.16), 0 0 1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.2), 0 0 1px rgba(0,0,0,0.1);
+    }
+
+    [data-theme="dark"] {
+      --color-primary: #5E6AD2;
+      --color-primary-hover: #6B78E0;
+      --color-primary-foreground: #FFFFFF;
+      --color-bg-default: #0F0F10;
+      --color-bg-subtle: #1A1A1C;
+      --color-bg-raised: #222326;
+      --color-surface: #1A1A1C;
+      --color-text-primary: #F4F5F8;
+      --color-text-secondary: #9EA3AB;
+      --color-text-tertiary: #6B6F76;
+      --color-text-disabled: #3D4046;
+      --color-border: #2D2D30;
+      --color-border-strong: #3D4046;
+      --color-danger: #E5484D;
+      --color-success: #30A46C;
+      --color-warning: #F5A623;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-base: 0 2px 8px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.6), 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    :root {
+      /* Typography */
+      --font-display: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "Geist Mono", "Fira Code", Consolas, monospace;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 22px;
+      --font-size-3xl: 28px;
+      --font-size-4xl: 36px;
+      --font-size-5xl: 52px;
+      --font-weight-regular: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.2;
+      --line-height-base: 1.5;
+      --line-height-relaxed: 1.7;
+      --tracking-tight: -0.03em;
+      --tracking-normal: -0.01em;
+      --tracking-wide: 0.02em;
+
+      /* Spacing */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* Radius */
+      --radius-sm: 3px;
+      --radius-base: 5px;
+      --radius-md: 7px;
+      --radius-lg: 10px;
+      --radius-xl: 14px;
+      --radius-full: 9999px;
+
+      /* Motion */
+      --duration-fast: 100ms;
+      --duration-base: 150ms;
+      --duration-slow: 250ms;
+      --easing-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      color: var(--color-text-primary);
+      background: var(--color-bg-default);
+      line-height: var(--line-height-base);
+      letter-spacing: var(--tracking-normal);
+      transition: background var(--duration-slow) var(--easing-default),
+                  color var(--duration-slow) var(--easing-default);
+    }
+
+    /* ============================================================
+       THEME TOGGLE — fixed top right
+    ============================================================ */
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--color-bg-raised);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-body);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--easing-default);
+      box-shadow: var(--shadow-sm);
+      letter-spacing: var(--tracking-normal);
+    }
+    .theme-toggle:hover {
+      color: var(--color-text-primary);
+      border-color: var(--color-border-strong);
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .preview-header {
+      padding: var(--space-6) var(--space-8) var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .preview-header-inner {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+    }
+    .preview-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--tracking-tight);
+    }
+    .preview-meta {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-tertiary);
+      font-family: var(--font-mono);
+    }
+
+    .preview-nav {
+      display: flex;
+      gap: 0;
+      padding: 0 var(--space-8);
+      border-bottom: 1px solid var(--color-border);
+      overflow-x: auto;
+    }
+    .preview-nav a {
+      padding: 10px var(--space-4);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color var(--duration-fast), border-color var(--duration-fast);
+      letter-spacing: var(--tracking-normal);
+    }
+    .preview-nav a:hover {
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-border-strong);
+    }
+
+    .section {
+      padding: var(--space-8);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .section-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: var(--space-6);
+      font-family: var(--font-mono);
+    }
+
+    /* ============================================================
+       1. COLORS — side-by-side light/dark
+    ============================================================ */
+    .theme-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+    .theme-col-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-tertiary);
+      margin-bottom: var(--space-3);
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .color-list { display: flex; flex-direction: column; gap: 3px; }
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: 5px var(--space-3);
+      border-radius: var(--radius-base);
+    }
+    .color-swatch {
+      width: 20px; height: 20px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      border: 1px solid rgba(128,128,128,0.15);
+    }
+    .color-name {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-secondary);
+      flex: 1;
+    }
+    .color-value {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-tertiary);
+    }
+
+    /* ============================================================
+       2. TYPOGRAPHY
+    ============================================================ */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta {
+      min-width: 140px;
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-tertiary);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       3. SPACING
+    ============================================================ */
+    .space-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: 6px;
+    }
+    .space-bar {
+      height: 16px;
+      background: var(--color-primary);
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+    .space-meta {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-tertiary);
+      min-width: 100px;
+    }
+
+    /* ============================================================
+       4. RADIUS & SHADOW
+    ============================================================ */
+    .shape-row { display: flex; flex-wrap: wrap; gap: var(--space-6); }
+    .shape-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+    .shape-box {
+      width: 56px; height: 56px;
+      background: var(--color-primary);
+      opacity: 0.8;
+    }
+    .shape-meta {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-tertiary);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .shadow-row { display: flex; flex-wrap: wrap; gap: var(--space-8); padding: var(--space-4) 0; }
+    .shadow-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+    .shadow-box {
+      width: 72px; height: 72px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    /* ============================================================
+       5. COMPONENTS
+    ============================================================ */
+    .component-group { margin-bottom: var(--space-8); }
+    .component-group:last-child { margin-bottom: 0; }
+    .component-group-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-tertiary);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+    }
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 5px 12px;
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      font-family: var(--font-body);
+      letter-spacing: var(--tracking-normal);
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      line-height: 20px;
+      transition: opacity var(--duration-fast) var(--easing-default),
+                  background var(--duration-fast) var(--easing-default),
+                  border-color var(--duration-fast) var(--easing-default);
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-primary-foreground);
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      background: var(--color-bg-raised);
+      color: var(--color-text-primary);
+      border-color: var(--color-border);
+    }
+    .btn-secondary:hover { border-color: var(--color-border-strong); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text-secondary);
+    }
+    .btn-ghost:hover {
+      background: var(--color-bg-subtle);
+      color: var(--color-text-primary);
+    }
+
+    .btn-danger {
+      background: rgba(229, 72, 77, 0.12);
+      color: var(--color-danger);
+      border-color: rgba(229, 72, 77, 0.2);
+    }
+    .btn-danger:hover { background: rgba(229, 72, 77, 0.18); }
+
+    .btn-sm { padding: 3px 8px; font-size: var(--font-size-xs); line-height: 18px; }
+    .btn-lg { padding: 7px 16px; font-size: var(--font-size-base); line-height: 22px; }
+
+    /* Inputs */
+    .input-wrap { display: flex; flex-direction: column; gap: 4px; min-width: 200px; }
+    .input-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+    }
+    .input {
+      height: 32px;
+      padding: 0 var(--space-3);
+      background: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      outline: none;
+      transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+      letter-spacing: var(--tracking-normal);
+    }
+    .input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(94, 106, 210, 0.3);
+    }
+    .input::placeholder { color: var(--color-text-disabled); }
+    .input.error { border-color: var(--color-danger); }
+    .input.error:focus { box-shadow: 0 0 0 2px rgba(229, 72, 77, 0.25); }
+    .input-hint { font-size: var(--font-size-xs); color: var(--color-text-tertiary); }
+    .input-hint.err { color: var(--color-danger); }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      line-height: 18px;
+      letter-spacing: 0.01em;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .badge-purple { background: rgba(94,106,210,0.15); color: #8B96E9; }
+    .badge-purple .badge-dot { background: #5E6AD2; }
+    .badge-green { background: rgba(48,164,108,0.15); color: #4CC38A; }
+    .badge-green .badge-dot { background: #30A46C; }
+    .badge-red { background: rgba(229,72,77,0.15); color: #FF6369; }
+    .badge-red .badge-dot { background: #E5484D; }
+    .badge-yellow { background: rgba(245,166,35,0.15); color: #F5A623; }
+    .badge-yellow .badge-dot { background: #F5A623; }
+    .badge-gray { background: var(--color-bg-raised); color: var(--color-text-secondary); }
+    .badge-gray .badge-dot { background: var(--color-text-tertiary); }
+
+    /* Issue row (Linear 核心组件) */
+    .issue-list {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .issue-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: 0 var(--space-4);
+      height: 36px;
+      border-bottom: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: background var(--duration-fast) var(--easing-default);
+    }
+    .issue-row:last-child { border-bottom: none; }
+    .issue-row:hover { background: var(--color-bg-subtle); }
+    .issue-status {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      flex-shrink: 0;
+    }
+    .issue-status.todo { color: var(--color-text-tertiary); }
+    .issue-status.in-progress {
+      color: var(--color-primary);
+      border-width: 2px;
+      background: conic-gradient(var(--color-primary) 0% 50%, transparent 50%);
+    }
+    .issue-status.done { background: var(--color-success); border-color: var(--color-success); }
+    .issue-id {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-mono);
+      color: var(--color-text-tertiary);
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+    .issue-title {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-primary);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .issue-badges { display: flex; gap: 4px; flex-shrink: 0; }
+
+    /* Nav */
+    .nav-demo {
+      background: var(--color-bg-default);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-6);
+      display: flex;
+      align-items: center;
+      height: 48px;
+      gap: var(--space-6);
+    }
+    .nav-logo {
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-base);
+      letter-spacing: var(--tracking-tight);
+    }
+    .nav-links { display: flex; gap: var(--space-1); flex: 1; }
+    .nav-link {
+      padding: 4px var(--space-3);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-radius: var(--radius-base);
+      letter-spacing: var(--tracking-normal);
+      transition: background var(--duration-fast), color var(--duration-fast);
+    }
+    .nav-link:hover {
+      background: var(--color-bg-subtle);
+      color: var(--color-text-primary);
+    }
+    .nav-actions { display: flex; gap: var(--space-2); }
+
+    /* ============================================================
+       6. HERO TEMPLATE
+    ============================================================ */
+    .hero {
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+      background: var(--color-bg-default);
+      border-top: 1px solid var(--color-border);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-4);
+    }
+    .hero-title {
+      font-size: var(--font-size-5xl);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-tight);
+      line-height: var(--line-height-tight);
+      color: var(--color-text-primary);
+      max-width: 680px;
+      margin: 0 auto var(--space-4);
+    }
+    .hero-desc {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      max-width: 440px;
+      margin: 0 auto var(--space-8);
+      line-height: var(--line-height-relaxed);
+    }
+    .hero-actions { display: flex; gap: var(--space-3); justify-content: center; }
+    .hero-footnote {
+      margin-top: var(--space-6);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-tertiary);
+    }
+  </style>
+</head>
+<body>
+
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+  <span id="themeIcon">☀️</span>
+  <span id="themeLabel">Light</span>
+</button>
+
+<!-- HEADER -->
+<header class="preview-header">
+  <div class="preview-header-inner">
+    <span class="preview-title">Linear Design System</span>
+    <span class="preview-meta">linear.app · 2026-04-22 · theme: both</span>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="preview-nav">
+  <a href="#colors">Colors</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#shapes">Radius & Shadow</a>
+  <a href="#components">Components</a>
+  <a href="#template">Template</a>
+</nav>
+
+<!-- ===== 1. COLORS ===== -->
+<section class="section" id="colors">
+  <p class="section-label">01 — Color Tokens · Light / Dark</p>
+  <div class="theme-compare">
+    <div>
+      <p class="theme-col-label">☀️ Light</p>
+      <div class="color-list">
+        <div class="color-row"><div class="color-swatch" style="background:#5E6AD2"></div><span class="color-name">primary</span><span class="color-value">#5E6AD2</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #e5e7eb"></div><span class="color-name">bg.default</span><span class="color-value">#FFFFFF</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#F7F8F9"></div><span class="color-name">bg.subtle</span><span class="color-value">#F7F8F9</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#F0F1F3"></div><span class="color-name">bg.raised</span><span class="color-value">#F0F1F3</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#1A1A1A"></div><span class="color-name">text.primary</span><span class="color-value">#1A1A1A</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#6B6F76"></div><span class="color-name">text.secondary</span><span class="color-value">#6B6F76</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#E5E7EB"></div><span class="color-name">border</span><span class="color-value">#E5E7EB</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#E5484D"></div><span class="color-name">danger</span><span class="color-value">#E5484D</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#30A46C"></div><span class="color-name">success</span><span class="color-value">#30A46C</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#F5A623"></div><span class="color-name">warning</span><span class="color-value">#F5A623</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="theme-col-label">🌙 Dark</p>
+      <div class="color-list">
+        <div class="color-row"><div class="color-swatch" style="background:#5E6AD2"></div><span class="color-name">primary</span><span class="color-value">#5E6AD2</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#0F0F10"></div><span class="color-name">bg.default</span><span class="color-value">#0F0F10</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#1A1A1C"></div><span class="color-name">bg.subtle</span><span class="color-value">#1A1A1C</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#222326"></div><span class="color-name">bg.raised</span><span class="color-value">#222326</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#F4F5F8"></div><span class="color-name">text.primary</span><span class="color-value">#F4F5F8</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#9EA3AB"></div><span class="color-name">text.secondary</span><span class="color-value">#9EA3AB</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#2D2D30"></div><span class="color-name">border</span><span class="color-value">#2D2D30</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#E5484D"></div><span class="color-name">danger</span><span class="color-value">#E5484D</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#30A46C"></div><span class="color-name">success</span><span class="color-value">#30A46C</span></div>
+        <div class="color-row"><div class="color-swatch" style="background:#F5A623"></div><span class="color-name">warning</span><span class="color-value">#F5A623</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. TYPOGRAPHY ===== -->
+<section class="section" id="typography">
+  <p class="section-label">02 — Typography · Inter · base 14px</p>
+  <div class="type-row">
+    <span class="type-meta">5xl 52px 700</span>
+    <span style="font-size:52px;font-weight:700;letter-spacing:-0.03em;line-height:1.2">Build faster.</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">4xl 36px 700</span>
+    <span style="font-size:36px;font-weight:700;letter-spacing:-0.03em;line-height:1.2">The system for product teams</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">3xl 28px 600</span>
+    <span style="font-size:28px;font-weight:600;letter-spacing:-0.02em">Built for purpose</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">2xl 22px 600</span>
+    <span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">Make product operations self-driving</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">xl 18px 400</span>
+    <span style="font-size:18px;color:var(--color-text-secondary);line-height:1.7">Purpose-built for planning and building products.</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">base 14px 400</span>
+    <span style="font-size:14px;color:var(--color-text-secondary);line-height:1.5">Reduces noise and restores momentum to help teams ship with high velocity and focus.</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">sm 12px 400</span>
+    <span style="font-size:12px;color:var(--color-text-tertiary)">Free for everyone · 250 issues · 2 teams</span>
+  </div>
+  <div class="type-row">
+    <span class="type-meta">mono 12px</span>
+    <span style="font-size:12px;font-family:monospace;color:var(--color-primary)">ENG-2703 · In Progress · High</span>
+  </div>
+</section>
+
+<!-- ===== 3. SPACING ===== -->
+<section class="section" id="spacing">
+  <p class="section-label">03 — Spacing · 4px base unit</p>
+  <div class="space-row"><span class="space-meta">space-1 / 4px</span><div class="space-bar" style="width:4px"></div></div>
+  <div class="space-row"><span class="space-meta">space-2 / 8px</span><div class="space-bar" style="width:8px"></div></div>
+  <div class="space-row"><span class="space-meta">space-3 / 12px</span><div class="space-bar" style="width:12px"></div></div>
+  <div class="space-row"><span class="space-meta">space-4 / 16px</span><div class="space-bar" style="width:16px"></div></div>
+  <div class="space-row"><span class="space-meta">space-6 / 24px</span><div class="space-bar" style="width:24px"></div></div>
+  <div class="space-row"><span class="space-meta">space-8 / 32px</span><div class="space-bar" style="width:32px"></div></div>
+  <div class="space-row"><span class="space-meta">space-12 / 48px</span><div class="space-bar" style="width:48px"></div></div>
+  <div class="space-row"><span class="space-meta">space-16 / 64px</span><div class="space-bar" style="width:64px"></div></div>
+</section>
+
+<!-- ===== 4. RADIUS & SHADOW ===== -->
+<section class="section" id="shapes">
+  <p class="section-label">04 — Border Radius · Minimal</p>
+  <div class="shape-row">
+    <div class="shape-item"><div class="shape-box" style="border-radius:0"></div><span class="shape-meta">none<br>0</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:3px"></div><span class="shape-meta">sm<br>3px</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:5px"></div><span class="shape-meta">base<br>5px</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:7px"></div><span class="shape-meta">md<br>7px</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:10px"></div><span class="shape-meta">lg<br>10px</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:14px"></div><span class="shape-meta">xl<br>14px</span></div>
+    <div class="shape-item"><div class="shape-box" style="border-radius:9999px"></div><span class="shape-meta">full<br>9999px</span></div>
+  </div>
+
+  <p class="section-label" style="margin-top:32px">Shadow Scale</p>
+  <div class="shadow-row">
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:none"></div><span class="shape-meta">none</span></div>
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:var(--shadow-sm)"></div><span class="shape-meta">sm</span></div>
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:var(--shadow-base)"></div><span class="shape-meta">base</span></div>
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:var(--shadow-md)"></div><span class="shape-meta">md</span></div>
+    <div class="shadow-item"><div class="shadow-box" style="box-shadow:var(--shadow-lg)"></div><span class="shape-meta">lg</span></div>
+  </div>
+</section>
+
+<!-- ===== 5. COMPONENTS ===== -->
+<section class="section" id="components">
+  <p class="section-label">05 — Components</p>
+
+  <div class="component-group">
+    <p class="component-group-label">Buttons</p>
+    <div class="component-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </div>
+  </div>
+
+  <div class="component-group">
+    <p class="component-group-label">Form Inputs</p>
+    <div class="component-row" style="align-items:flex-end">
+      <div class="input-wrap">
+        <label class="input-label">Workspace name</label>
+        <input class="input" type="text" placeholder="Acme Corp">
+        <span class="input-hint">Used in your workspace URL</span>
+      </div>
+      <div class="input-wrap">
+        <label class="input-label">Invite by email</label>
+        <input class="input error" type="email" placeholder="you@company.com" value="invalid-email">
+        <span class="input-hint err">Enter a valid email address</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-group">
+    <p class="component-group-label">Labels / Badges</p>
+    <div class="component-row">
+      <span class="badge badge-purple"><span class="badge-dot"></span>In Progress</span>
+      <span class="badge badge-green"><span class="badge-dot"></span>Done</span>
+      <span class="badge badge-red"><span class="badge-dot"></span>Cancelled</span>
+      <span class="badge badge-yellow"><span class="badge-dot"></span>In Review</span>
+      <span class="badge badge-gray"><span class="badge-dot"></span>Backlog</span>
+    </div>
+  </div>
+
+  <div class="component-group">
+    <p class="component-group-label">Issue List · Core Component</p>
+    <div class="issue-list">
+      <div class="issue-row">
+        <div class="issue-status done"></div>
+        <span class="issue-id">ENG-2074</span>
+        <span class="issue-title">Clean up deprecated APIs</span>
+        <div class="issue-badges">
+          <span class="badge badge-gray"><span class="badge-dot"></span>API</span>
+        </div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-status in-progress"></div>
+        <span class="issue-id">ENG-2703</span>
+        <span class="issue-title">Faster app launch — render before vehicle_state sync</span>
+        <div class="issue-badges">
+          <span class="badge badge-yellow"><span class="badge-dot"></span>Performance</span>
+          <span class="badge badge-gray"><span class="badge-dot"></span>iOS</span>
+        </div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-status todo"></div>
+        <span class="issue-id">ENG-2088</span>
+        <span class="issue-title">Remove UI inconsistencies</span>
+        <div class="issue-badges">
+          <span class="badge badge-red"><span class="badge-dot"></span>Bug</span>
+          <span class="badge badge-purple"><span class="badge-dot"></span>Design</span>
+        </div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-status todo"></div>
+        <span class="issue-id">ENG-924</span>
+        <span class="issue-title">Upgrade to Claude Opus 4.5</span>
+        <div class="issue-badges">
+          <span class="badge badge-purple"><span class="badge-dot"></span>AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component-group">
+    <p class="component-group-label">Navigation</p>
+    <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border)">
+      <nav class="nav-demo">
+        <span class="nav-logo">Linear</span>
+        <div class="nav-links">
+          <a class="nav-link" href="#">Product</a>
+          <a class="nav-link" href="#">Customers</a>
+          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Changelog</a>
+        </div>
+        <div class="nav-actions">
+          <button class="btn btn-ghost btn-sm">Log in</button>
+          <button class="btn btn-primary btn-sm">Sign up</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. HERO TEMPLATE ===== -->
+<section class="section" id="template" style="padding:0">
+  <div class="hero">
+    <span class="hero-eyebrow">The product development system</span>
+    <h1 class="hero-title">The product development system for teams and agents</h1>
+    <p class="hero-desc">Purpose-built for planning and building products. Designed for the AI era.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-lg">Get started</button>
+      <button class="btn btn-secondary btn-lg">Open app</button>
+    </div>
+    <p class="hero-footnote">Trusted by <strong>25,000+</strong> product teams · Free to start</p>
+  </div>
+</section>
+
+<div style="height:80px"></div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.dataset.theme === 'dark';
+    html.dataset.theme = isDark ? 'light' : 'dark';
+    document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+    document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
+  }
+  // Init label to match default dark theme
+  document.getElementById('themeIcon').textContent = '☀️';
+  document.getElementById('themeLabel').textContent = 'Light';
+</script>
+</body>
+</html>
