@@ -53,7 +53,7 @@ triggers:
 
 # ── 输入 / 输出声明 ───────────────────────────────────
 input: "figma-mcp（Figma MCP 直连，精度最高）| image（设计稿截图 PNG/JPG）| url（Figma 分享链接）| text（页面描述或补充说明）"
-output: "markdown（结构化设计规范文档）| css（tokens.css）| json（.design-spec-extractor/raw.json）"
+output: "raw.json（原始数据，过程文件）| tokens.css（通用 CSS Variables）| tokens.json（W3C Design Token 格式）| design.md（设计规范文档）| preview.html（可视化预览）| 框架产物（按需：globals.css / tailwind.config.js / theme.ts 等）"
 
 # ── 参考文件 ──────────────────────────────────────────
 references:
@@ -74,13 +74,13 @@ changelog: "v4.1 2026-04-16 拆分参考文件；Token 必要性三级标注；�
 
 ## 参考文件说明
 
-本 Skill 配套三个参考文件，按需读取，不需要一次全部加载：
+本 Skill 配套三个参考文件。**各工具对 `references` frontmatter 字段的支持程度不同，因此每个触发点在正文中均有明确的读取指令，AI 必须按指令主动读取对应文件，不能依赖工具自动加载。**
 
-| 文件 | 读取时机 |
-|------|---------|
-| `references/extraction-dimensions.md` | 开始提取时，按 8 个维度逐一扫描 |
-| `references/raw-json-schema.md` | 生成 raw.json 时 / 检测到不一致时 |
-| `references/framework-conversion.md` | 用户确认框架后，生成转换产物时 |
+| 文件 | 读取时机 | 正文触发位置 |
+|------|---------|------------|
+| `references/extraction-dimensions.md` | 开始提取时 | 第五节 |
+| `references/raw-json-schema.md` | 生成 raw.json / 检测到不一致时 | 第六节阶段一、第零节 |
+| `references/framework-conversion.md` | 用户确认框架后 | 第四节、第六节阶段六 |
 
 ---
 
@@ -97,7 +97,7 @@ changelog: "v4.1 2026-04-16 拆分参考文件；Token 必要性三级标注；�
 
 各工具连接方式不同（Claude Code / Cursor / Windsurf / VS Code），以各工具官方文档为准。连接后完成 OAuth 授权，粘贴 Figma 链接即可让 AI 读取图层数据。
 
-> ⚠️ 通过 Figma MCP 读取时，若源文件存在规范不一致，读取 `references/raw-json-schema.md` 执行不一致检测与上报流程。
+> ⚠️ 通过 Figma MCP 读取时，若源文件存在规范不一致，在第六节阶段一读取 `references/raw-json-schema.md` 执行不一致检测与上报流程。
 
 ---
 
@@ -194,13 +194,13 @@ E. Naive UI      → themeOverrides 对象
 F. 暂不需要      → 保持通用格式
 ```
 
-> 用户选 F 或不回复时直接输出通用格式。转换规则详见 `references/framework-conversion.md`。
+> 用户选 F 或不回复时直接输出通用格式。用户选 A-E 时，在第六节阶段六读取 `references/framework-conversion.md` 执行转换。
 
 ---
 
 ## 五、提取执行
 
-**读取 `references/extraction-dimensions.md`，按 8 个维度逐一扫描设计稿。**
+> **📂 现在读取 `references/extraction-dimensions.md`**，按 8 个维度逐一扫描设计稿。
 
 Token 必要性三级：
 - `[必要]` 缺失则阻塞 tokens.css 输出
@@ -216,7 +216,8 @@ Token 必要性三级：
 路径：`.design-spec-extractor/raw.json`
 
 记录所有原始发现值（含冗余和冲突），不做任何筛选。
-格式和写入规则详见 `references/raw-json-schema.md`。
+
+> **📂 现在读取 `references/raw-json-schema.md`**，按完整 schema 生成 raw.json，并在检测到 `conflicts_detected` 时执行不一致上报流程。
 
 ### 阶段二：tokens.css（必须输出）
 
@@ -227,9 +228,128 @@ Token 必要性三级：
 - `[推荐]` Token 无法提取时用注释标注「待补充 — 原因：xxx」
 - 文件头部注明提取来源、时间、Token 等级说明
 
-### 阶段三：框架转换文件（按需输出）
+### 阶段三：tokens.json（必须输出）
 
-用户确认框架后，读取 `references/framework-conversion.md` 生成对应文件。
+路径：`design-system/tokens.json`
+
+将 tokens.css 中的所有变量转换为结构化 JSON，供 Style Dictionary、Tokens Studio、CI 脚本等工具消费。格式遵循 W3C Design Token 社区规范草案：
+
+```json
+{
+  "color": {
+    "primary": {
+      "$value": "#1677FF",
+      "$type": "color",
+      "$description": "主按钮、激活状态、链接"
+    },
+    "primary-hover": { "$value": "#4096FF", "$type": "color" }
+  },
+  "spacing": {
+    "unit": { "$value": "8px", "$type": "dimension" },
+    "md":   { "$value": "16px", "$type": "dimension" }
+  },
+  "radius": {
+    "md": { "$value": "6px", "$type": "dimension" }
+  },
+  "shadow": {
+    "md": { "$value": "0 2px 8px rgba(0,0,0,0.12)", "$type": "shadow" }
+  }
+}
+```
+
+规则：
+- 键名与 tokens.css 变量名保持一一对应（去掉 `--` 前缀和分组前缀）
+- `[待补充]` 的 Token 在 JSON 中保留键名，`$value` 填 `null`，`$description` 注明原因
+- `[可选]` Token 无对应页面时整组省略
+
+### 阶段四：design.md（必须输出）
+
+路径：`design-system/design.md`
+
+面向人类阅读的设计规范文档，也是喂给 AI 的上下文描述文件。内容来自提取结果，格式如下：
+
+```markdown
+# [产品名称] 设计规范
+> 提取自：[来源] · 生成时间：[日期] · 工具：design-spec-extractor-2B v4.1
+> ⚠️ 含推断内容 / 全量提取（视情况标注）
+
+## 概述
+- 产品类型：B 端 [后台管理系统 / SaaS / BI...]
+- 目标设备：桌面端，最小宽度 [N]px
+- 布局模式：[左侧边栏 + 顶部导航 / 纯顶部导航...]
+- 组件库：[shadcn / Ant Design / 原生...]
+
+## 色彩系统
+### 品牌色
+| Token | 值 | 使用场景 |
+...（从 tokens.css 生成，含必要性等级标注）
+
+### 功能色 / 中性色 / 图表色
+...
+
+## 文字排版
+...
+
+## 间距 · 圆角 · 阴影
+...
+
+## 动效 · 层级
+...
+
+## 布局规范
+...
+
+## 待补充项
+列出所有标注「待补充」的 Token 及原因，方便后续跟进
+```
+
+规则：
+- 所有数值直接引用 tokens.css 的真实值，不重复填写
+- 待补充项单独汇总在文末，方便设计师一次性补全
+- 含推断内容时，在文档顶部醒目标注
+
+### 阶段五：preview.html（必须输出）
+
+路径：`design-system/preview.html`
+
+基于 tokens.css 生成的可视化预览页，让团队成员无需读代码即可直观验证提取结果是否正确。必须是单文件 HTML，内联所有样式，无外部依赖，可直接双击打开。
+
+页面结构：
+
+```
+Header：产品名称 + 提取时间 + 来源标注
+
+色彩色板
+  品牌色：Primary 全状态色块（default / hover / active / disabled / focus / light）
+  功能色：Success / Warning / Error / Info 各三色（default / hover / light）
+  中性色：背景色组 / 边框色组 / 文字色组 / 其他
+
+文字排版预览
+  各字号层级示例文字（"一二三四五六七八九十"）
+  字体家族展示
+
+间距预览
+  各 spacing 变量对应的色块宽度可视化
+
+圆角预览
+  各 radius 变量对应的方块圆角展示
+
+阴影预览
+  各 shadow 变量对应的卡片阴影展示
+
+动效 · 层级（文字列表展示）
+
+待补充项汇总（红色高亮）
+```
+
+规则：
+- 所有色值、数值直接通过 CSS 变量引用，不硬编码
+- 待补充项用红色边框 + 警告图标高亮
+- 页面顶部提供「复制 tokens.css」按钮；因本地 `file://` 协议下 `navigator.clipboard` 可能被浏览器拦截，必须同时实现 fallback：先尝试 `navigator.clipboard.writeText()`，失败时自动创建 `<textarea>` 并执行 `document.execCommand('copy')`，两者均失败时弹出提示框让用户手动复制
+
+### 阶段六：框架转换文件（按需输出）
+
+> **📂 用户确认框架后，读取 `references/framework-conversion.md`**，按对应框架规则生成转换产物，追加到 `design-system/` 目录，不替换 tokens.css。
 
 ### 文件输出清单
 
@@ -237,6 +357,9 @@ Token 必要性三级：
 |------|------|------|---------|
 | `raw.json` | `.design-spec-extractor/` | 过程文件 | 每次提取**自动生成** |
 | `tokens.css` | `design-system/` | 必须产物 | 每次提取**必须输出** |
+| `tokens.json` | `design-system/` | 必须产物 | 每次提取**必须输出** |
+| `design.md` | `design-system/` | 必须产物 | 每次提取**必须输出** |
+| `preview.html` | `design-system/` | 必须产物 | 每次提取**必须输出** |
 | `globals.css` | `design-system/` | 框架产物 | 用户选 shadcn 时 |
 | `tailwind.config.js` | 项目根目录 | 框架产物 | 用户选 Tailwind / shadcn 时 |
 | `theme.ts` | `design-system/` | 框架产物 | 用户选 Ant Design 时 |
@@ -267,5 +390,8 @@ Token 必要性三级：
 - [ ] `[可选]` Token 无对应页面时已整行注释，不留占位符
 - [ ] `[推荐]` Token 无法提取时已注释标注「待补充」，不留占位符
 - [ ] `tokens.css` 与 `raw.json` 数值一致，无归一阶段引入的错误
+- [ ] `tokens.json` 键名与 tokens.css 变量名一一对应，待补充项 `$value` 为 null
+- [ ] `design.md` 待补充项已在文末汇总，含推断内容时顶部已标注
+- [ ] `preview.html` 可直接双击打开，无外部依赖，色板和待补充项红色高亮正确
 - [ ] 用户选择框架转换时，转换产物与 `tokens.css` 数值一致
 - [ ] shadcn 转换时，所有颜色已从 HEX 正确换算为 HSL 裸值格式
