@@ -26,18 +26,26 @@ ai-watch/
 飞书表 = 只放**精修后的成品**，不放原始 RSS 数据。
 
 ```text
-launchd 周一 09:00 触发
-  → fetch.py --no-feishu 拉 RSS、过滤 7 天内、按栏目归类
-    → output/YYYY-WXX.md（本地候选素材，未翻译，**不推飞书**）
+[自动·每周一 09:00]
+launchd → fetch.py --no-feishu → output/YYYY-WXX.md（本地候选）
 
-  → AI（Cursor 对话或本地 LLM 脚本）读取 output/*.md
-    → 按 rules.md 筛选、翻译、写 80–150 字描述、打分
-    → 推送到飞书表（issue 字段 = #001/#002/...）
+[手动·用户触发]
+你跟 Claude 说"出 #NNN"
+  → Claude 读 output/*.md
+  → 按 rules.md 筛 ~22 条、翻译、写描述、打分
+  → 改 _push_curated.py 后执行
+  → 飞书表新增 #NNN 期记录
 
-  → 你在飞书表审稿，状态改「已审」
-    → AI 调用 media-formatter skill 输出公众号 HTML
-      → 你粘贴到公众号后台发布
+[手动·审稿]
+你在飞书表审，把要发的几条状态改「已审」
+
+[手动·出稿]
+你跟 Claude 说"可以排版了 / #NNN 出 HTML"
+  → Claude 用 media-formatter skill 输出 HTML
+  → 你粘贴到公众号后台发布
 ```
+
+详见 `rules.md` 第七节《每周一标准操作流程 SOP》。
 
 ## 首次安装步骤
 
