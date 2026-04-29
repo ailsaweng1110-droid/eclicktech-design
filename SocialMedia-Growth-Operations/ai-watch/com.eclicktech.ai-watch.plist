@@ -12,6 +12,7 @@
     <array>
       <string>/Users/yeahmobi/Documents/eclicktech-design/SocialMedia-Growth-Operations/ai-watch/.venv/bin/python</string>
       <string>/Users/yeahmobi/Documents/eclicktech-design/SocialMedia-Growth-Operations/ai-watch/fetch.py</string>
+      <string>--no-feishu</string>
     </array>
 
     <key>StartCalendarInterval</key>

@@ -23,16 +23,20 @@ ai-watch/
 
 ## 完整工作链路
 
+飞书表 = 只放**精修后的成品**，不放原始 RSS 数据。
+
 ```text
 launchd 周一 09:00 触发
-  → fetch.py 拉 RSS、过滤 7 天内、按栏目归类
-    → output/YYYY-WXX.md（候选素材，未筛选未翻译）
-    → 同步推送到飞书多维表（每栏 Top 8 条，按来源重要性排序）
-      → 你在飞书表里改"重要性 / 状态 / 备注"做筛选
-        → AI 按 rules.md 翻译、点评、写 80–150 字描述
-          → 你审稿
-            → AI 用 media-formatter skill 输出 HTML
-              → 你粘贴到公众号后台发布
+  → fetch.py --no-feishu 拉 RSS、过滤 7 天内、按栏目归类
+    → output/YYYY-WXX.md（本地候选素材，未翻译，**不推飞书**）
+
+  → AI（Cursor 对话或本地 LLM 脚本）读取 output/*.md
+    → 按 rules.md 筛选、翻译、写 80–150 字描述、打分
+    → 推送到飞书表（issue 字段 = #001/#002/...）
+
+  → 你在飞书表审稿，状态改「已审」
+    → AI 调用 media-formatter skill 输出公众号 HTML
+      → 你粘贴到公众号后台发布
 ```
 
 ## 首次安装步骤
