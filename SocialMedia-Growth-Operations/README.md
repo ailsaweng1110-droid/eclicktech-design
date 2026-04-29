@@ -1,90 +1,58 @@
-# my-skill
+# SocialMedia-Growth-Operations
 
-自媒体内容撰写与排版工作流 Skill 套件。专注于 AI、设计、产品与营销交叉领域的内容生产，从撰写到排版的全流程支持。
+自媒体增长运营 Skill 套件，覆盖「内容撰写 -> 公众号排版」两阶段工作流。
 
-## 📋 项目概述
+## 目录结构
 
-本仓库包含两个互补的 Skill：
-1. **media-content-writer** - 自媒体内容撰写专用工具
-2. **media-formatter** - 公众号内容排版工具
+```text
+SocialMedia-Growth-Operations/
+├── README.md
+├── media-content-writer/
+│   ├── README.md
+│   ├── SKILL.md
+│   └── references/
+│       └── case-library.md
+└── media-formatter/
+    ├── README.md
+    ├── SKILL.md
+    └── references/
+        └── formatting-guide.md
+```
 
-核心目标：**Designing for Business Impact** —— 通过专业的设计思维和营销策略为自媒体矩阵赋能。
+## 两个 Skill 的职责
 
----
+### 1) media-content-writer
 
-## 📖 快速开始
+- 目标：将选题/素材转成可审阅文章草稿
+- 输出：标题矩阵、公众号正文、可选小红书/LinkedIn版本、配图建议
+- 入口文档：`media-content-writer/SKILL.md`
+- 参考资料：`media-content-writer/references/case-library.md`
 
-### 对于内容编辑
-1. 准备好选题和参考素材
-2. 调用 **media-content-writer** Skill
-3. 提供选题、平台、目标受众等信息
-4. 获取标题矩阵和完整成稿
-5. 多轮审阅和迭代修改
+详情见：`media-content-writer/README.md`
 
-### 对于排版设计
-1. 获取编辑定稿的纯文字版本
-2. 调用 **media-formatter** Skill
-3. 确认所使用的标题和副标题
-4. 接收公众号 HTML 代码
-5. 粘贴至公众号后台发布
+### 2) media-formatter
 
----
+- 目标：把定稿正文转换为可直接粘贴到微信公众号后台的 HTML
+- 输出：排版说明 + 完整 HTML（内联样式）
+- 入口文档：`media-formatter/SKILL.md`
+- 参考资料：`media-formatter/references/formatting-guide.md`
 
-## 📚 重要文档
+详情见：`media-formatter/README.md`
 
-### 内容撰写参考
-- **SKILL.md** - 包含 5 大栏目体系、对应写作规范、标题技巧、案例参考方法
-- **case-library.md** - 11 条精选爆款案例库，按栏目分类，含标题、结构、核心逻辑分析
+## 标准使用流程
 
-### 排版规范参考
-- **SKILL.md** - 包含 5 步执行流程、排版限制、HTML 输出模板
-- **formatting-guide.md** - 完整排版参数手册，含所有 HTML 组件代码、色值、字体规范、完整文章模板
+1. 在 `media-content-writer` 完成选题分析、出稿和多轮修改
+2. 确认标题与正文定稿
+3. 将定稿内容交给 `media-formatter` 进行 HTML 排版
+4. 粘贴到公众号编辑器并补充图片后发布
 
----
+## 维护说明
 
-## 💡 核心要点速查
-
-| 方面 | 要求 |
-|------|------|
-| **写作风格** | ✅ 第一人称，口语化，有细节 ❌ AI 腔，空泛观点 |
-| **数据使用** | ✅ 来自真实素材 ❌ 凭空捏造 |
-| **CTA 设置** | ✅ 每篇必有明确行动引导 ❌ 内容孤立无关联 |
-| **排版限制** | ✅ 严格遵守规范 ❌ 自行发明样式 |
-| **栏目判断** | ✅ 用 5 栏目体系判断 ❌ 随意混搭风格 |
-| **配图标注** | ✅ 用 [配图建议：XXX] 标记 ❌ 正文中夹杂占位符 |
-
----
-
-## 🤝 贡献与维护
-
-- **栏目扩展** - 需要新增栏目？在 media-content-writer/SKILL.md 中更新栏目体系和案例库
-- **排版更新** - 品牌视觉升级？更新 media-formatter/references/formatting-guide.md 中的 HTML 组件和色值
-- **案例补充** - 有新的爆款文章？整理结构和逻辑后补入 case-library.md
+- 更新写作策略/栏目：改 `media-content-writer/SKILL.md`
+- 更新案例参考：改 `media-content-writer/references/case-library.md`
+- 更新排版规范：改 `media-formatter/references/formatting-guide.md`
+- 调整排版执行逻辑：改 `media-formatter/SKILL.md`
 
 ---
 
-## ⚙️ 技术栈
-
-- **内容撰写** - AI 辅助文本生成（支持多轮对话修改）
-- **排版转换** - 标准 HTML + 内联 CSS（兼容微信公众号编辑器）
-- **规范管理** - Markdown 文档 + 代码模板库
-
----
-
-## 📞 联系与反馈
-
-- **内容问题** → 联系品牌公关部产品设计组
-- **排版样式** → 提交 issue 或更新 formatting-guide.md
-- **新栏目建议** → 提交 PR 至 media-content-writer/SKILL.md
-
----
-
-## 📄 License
-
-本仓库遵循 MIT License，详见 [LICENSE](./LICENSE) 文件。
-
----
-
-**最后更新**：2026-04-09  
-**维护者**：品牌公关部产品设计组  
-**版本**：1.0.0
+维护团队：品牌公关部产品设计组
