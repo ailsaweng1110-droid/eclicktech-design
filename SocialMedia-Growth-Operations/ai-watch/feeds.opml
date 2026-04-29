@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>易点事务所 AI 观察 - 信息源</title>
+    <dateCreated>Wed, 29 Apr 2026 09:00:00 +0800</dateCreated>
+  </head>
+  <body>
+    <outline text="01 AI 模型 / 产品动态" title="01 AI 模型 / 产品动态">
+      <outline type="rss" text="OpenAI" title="OpenAI" xmlUrl="https://openai.com/news/rss.xml" htmlUrl="https://openai.com/news/" />
+      <outline type="rss" text="Anthropic News" title="Anthropic News" xmlUrl="https://www.anthropic.com/rss.xml" htmlUrl="https://www.anthropic.com/news" />
+      <outline type="rss" text="Google DeepMind Blog" title="Google DeepMind Blog" xmlUrl="https://deepmind.google/blog/rss.xml" htmlUrl="https://deepmind.google/blog/" />
+      <outline type="rss" text="AWS News" title="AWS News" xmlUrl="https://aws.amazon.com/blogs/aws/feed/" htmlUrl="https://aws.amazon.com/blogs/aws/" />
+      <outline type="rss" text="Microsoft AI Blog" title="Microsoft AI Blog" xmlUrl="https://blogs.microsoft.com/ai/feed/" htmlUrl="https://blogs.microsoft.com/ai/" />
+      <outline type="rss" text="Hugging Face Blog" title="Hugging Face Blog" xmlUrl="https://huggingface.co/blog/feed.xml" htmlUrl="https://huggingface.co/blog" />
+      <outline type="rss" text="The Verge AI" title="The Verge AI" xmlUrl="https://www.theverge.com/rss/ai-artificial-intelligence/index.xml" htmlUrl="https://www.theverge.com/ai-artificial-intelligence" />
+      <outline type="rss" text="TechCrunch AI" title="TechCrunch AI" xmlUrl="https://techcrunch.com/category/artificial-intelligence/feed/" htmlUrl="https://techcrunch.com/category/artificial-intelligence/" />
+      <outline type="rss" text="MIT Technology Review AI" title="MIT Technology Review AI" xmlUrl="https://www.technologyreview.com/topic/artificial-intelligence/feed" htmlUrl="https://www.technologyreview.com/topic/artificial-intelligence/" />
+    </outline>
+
+    <outline text="02 AI + 设计" title="02 AI + 设计">
+      <outline type="rss" text="Figma Blog" title="Figma Blog" xmlUrl="https://www.figma.com/blog/rss/" htmlUrl="https://www.figma.com/blog/" />
+      <outline type="rss" text="Adobe Blog" title="Adobe Blog" xmlUrl="https://blog.adobe.com/en/feed.xml" htmlUrl="https://blog.adobe.com/" />
+      <outline type="rss" text="UX Collective" title="UX Collective" xmlUrl="https://uxdesign.cc/feed" htmlUrl="https://uxdesign.cc/" />
+      <outline type="rss" text="Smashing Magazine" title="Smashing Magazine" xmlUrl="https://www.smashingmagazine.com/feed/" htmlUrl="https://www.smashingmagazine.com/" />
+      <outline type="rss" text="Lenny's Newsletter" title="Lenny's Newsletter" xmlUrl="https://www.lennysnewsletter.com/feed" htmlUrl="https://www.lennysnewsletter.com/" />
+      <outline type="rss" text="Frame.io Insider" title="Frame.io Insider" xmlUrl="https://blog.frame.io/feed/" htmlUrl="https://blog.frame.io/" />
+      <outline type="rss" text="A List Apart" title="A List Apart" xmlUrl="https://alistapart.com/main/feed/" htmlUrl="https://alistapart.com/" />
+      <outline type="rss" text="Nielsen Norman Group" title="Nielsen Norman Group" xmlUrl="https://www.nngroup.com/feed/rss/" htmlUrl="https://www.nngroup.com/articles/" />
+    </outline>
+
+    <outline text="03 AI + 海外营销 (含 SEO/GEO/AEO)" title="03 AI + 海外营销 (含 SEO/GEO/AEO)">
+      <outline type="rss" text="SaaStr" title="SaaStr" xmlUrl="https://www.saastr.com/feed/" htmlUrl="https://www.saastr.com/" />
+      <outline type="rss" text="Marketing Brew" title="Marketing Brew" xmlUrl="https://www.marketingbrew.com/feed/posts" htmlUrl="https://www.marketingbrew.com/" />
+      <outline type="rss" text="HubSpot Marketing Blog" title="HubSpot Marketing Blog" xmlUrl="https://blog.hubspot.com/marketing/rss.xml" htmlUrl="https://blog.hubspot.com/marketing" />
+      <outline type="rss" text="Search Engine Land" title="Search Engine Land" xmlUrl="https://searchengineland.com/feed" htmlUrl="https://searchengineland.com/" />
+      <outline type="rss" text="Search Engine Journal" title="Search Engine Journal" xmlUrl="https://www.searchenginejournal.com/feed/" htmlUrl="https://www.searchenginejournal.com/" />
+      <outline type="rss" text="Ahrefs Blog" title="Ahrefs Blog" xmlUrl="https://ahrefs.com/blog/feed/" htmlUrl="https://ahrefs.com/blog/" />
+      <outline type="rss" text="Backlinko" title="Backlinko" xmlUrl="https://backlinko.com/blog/feed" htmlUrl="https://backlinko.com/blog" />
+      <outline type="rss" text="Aleyda Solis" title="Aleyda Solis" xmlUrl="https://www.aleydasolis.com/en/feed/" htmlUrl="https://www.aleydasolis.com/en/" />
+      <outline type="rss" text="MozBlog" title="Moz Blog" xmlUrl="https://moz.com/posts/rss/blog" htmlUrl="https://moz.com/blog" />
+    </outline>
+
+    <outline text="04 创始人观点" title="04 创始人观点">
+      <outline type="rss" text="Lenny's Newsletter" title="Lenny's Newsletter" xmlUrl="https://www.lennysnewsletter.com/feed" htmlUrl="https://www.lennysnewsletter.com/" />
+      <outline type="rss" text="Stratechery" title="Stratechery" xmlUrl="https://stratechery.com/feed/" htmlUrl="https://stratechery.com/" />
+      <outline type="rss" text="a16z" title="a16z" xmlUrl="https://a16z.com/feed/" htmlUrl="https://a16z.com/" />
+      <outline type="rss" text="Not Boring" title="Not Boring" xmlUrl="https://www.notboring.co/feed" htmlUrl="https://www.notboring.co/" />
+      <outline type="rss" text="First Round Review" title="First Round Review" xmlUrl="https://review.firstround.com/feed.xml" htmlUrl="https://review.firstround.com/" />
+      <outline type="rss" text="Reforge" title="Reforge" xmlUrl="https://www.reforge.com/blog.rss" htmlUrl="https://www.reforge.com/blog" />
+      <outline type="rss" text="Andrew Chen" title="Andrew Chen" xmlUrl="https://andrewchen.com/feed/" htmlUrl="https://andrewchen.com/" />
+    </outline>
+  </body>
+</opml>
