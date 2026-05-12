@@ -112,6 +112,12 @@ Web Design Extractor/
 
 ---
 
+## 相关：多品牌 Figma Token
+
+仓库根目录下的 **[`design-tokens`](../../design-tokens/README.md)**（与 Web Design Extractor 并列）为 **eclicktech / cyberklick / yeahmobi / zmaticoo** 四品牌 Token 包；取用方式、Tag / npm 说明见该目录 [`README.md`](../../design-tokens/README.md)。
+
+---
+
 ## 推荐配合使用的 AI 工具
 
 Claude · Cursor · GitHub Copilot · v0.dev · Lovable

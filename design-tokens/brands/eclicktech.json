@@ -1,0 +1,354 @@
+{
+  "brand": "eclicktech",
+  "extends": "../tokens.json",
+  "overrides": {
+    "light": {
+      "Daybreak Blue": {
+        "blue-1": {
+          "value": "#e6f2ff",
+          "type": "color"
+        },
+        "blue-5": {
+          "value": "#2875ff",
+          "type": "color"
+        },
+        "blue-6": {
+          "value": "#0251ff",
+          "type": "color"
+        },
+        "blue-7": {
+          "value": "#003dd9",
+          "type": "color"
+        }
+      },
+      "Polar Green": {
+        "green-6": {
+          "value": "#00bb1f",
+          "type": "color"
+        }
+      },
+      "Sunrise Yellow": {
+        "yellow-6": {
+          "value": "#fbbc00",
+          "type": "color"
+        }
+      },
+      "Magenta": {
+        "magenta-6": {
+          "value": "#f90058",
+          "type": "color"
+        }
+      },
+      "semantic": {
+        "color.brand.primary": {
+          "value": "#0251ff",
+          "type": "color"
+        },
+        "color.brand.primary.hover": {
+          "value": "#2875ff",
+          "type": "color"
+        },
+        "color.brand.primary.active": {
+          "value": "#003dd9",
+          "type": "color"
+        },
+        "color.brand.primary.bg": {
+          "value": "#e6f2ff",
+          "type": "color"
+        },
+        "color.status.link": {
+          "value": "#0251ff",
+          "type": "color"
+        },
+        "color.status.success": {
+          "value": "#00bb1f",
+          "type": "color"
+        },
+        "color.status.warning": {
+          "value": "#fbbc00",
+          "type": "color"
+        },
+        "color.status.error": {
+          "value": "#f90058",
+          "type": "color"
+        },
+        "color.neutral.text.title": {
+          "value": "#1f2a44",
+          "type": "color"
+        },
+        "color.neutral.text.primary": {
+          "value": "#1f2a44",
+          "type": "color"
+        },
+        "color.neutral.text.secondary": {
+          "value": "#5f6f8a",
+          "type": "color"
+        },
+        "color.neutral.text.disabled": {
+          "value": "#8a99b2",
+          "type": "color"
+        },
+        "color.neutral.border": {
+          "value": "#cfd7e6",
+          "type": "color"
+        },
+        "color.neutral.divider": {
+          "value": "#e4eaf3",
+          "type": "color"
+        },
+        "color.neutral.bg.base": {
+          "value": "#f1f5fb",
+          "type": "color"
+        },
+        "color.neutral.bg.table-header": {
+          "value": "#f7f9fd",
+          "type": "color"
+        },
+        "color.status.info": {
+          "value": "#1677ff",
+          "type": "color"
+        },
+        "color.status.info.bg": {
+          "value": "#e6f7ff",
+          "type": "color"
+        }
+      }
+    },
+    "dark": {
+      "Daybreak Blue": {
+        "blue-1": {
+          "value": "#11182c",
+          "type": "color"
+        },
+        "blue-5": {
+          "value": "#0b3cad",
+          "type": "color"
+        },
+        "blue-6": {
+          "value": "#0548dc",
+          "type": "color"
+        },
+        "blue-7": {
+          "value": "#2968eb",
+          "type": "color"
+        }
+      },
+      "Polar Green": {
+        "green-6": {
+          "value": "#03a21d",
+          "type": "color"
+        }
+      },
+      "Sunrise Yellow": {
+        "yellow-6": {
+          "value": "#d8a103",
+          "type": "color"
+        }
+      },
+      "Magenta": {
+        "magenta-6": {
+          "value": "#d7064e",
+          "type": "color"
+        }
+      },
+      "semantic": {
+        "color.brand.primary": {
+          "value": "#0548dc",
+          "type": "color"
+        },
+        "color.brand.primary.hover": {
+          "value": "#0b3cad",
+          "type": "color"
+        },
+        "color.brand.primary.active": {
+          "value": "#2968eb",
+          "type": "color"
+        },
+        "color.brand.primary.bg": {
+          "value": "#11182c",
+          "type": "color"
+        },
+        "color.status.link": {
+          "value": "#0548dc",
+          "type": "color"
+        },
+        "color.status.success": {
+          "value": "#03a21d",
+          "type": "color"
+        },
+        "color.status.warning": {
+          "value": "#d8a103",
+          "type": "color"
+        },
+        "color.status.error": {
+          "value": "#d7064e",
+          "type": "color"
+        },
+        "color.status.info": {
+          "value": "#1677ff",
+          "type": "color"
+        },
+        "color.status.info.bg": {
+          "value": "#111d2c",
+          "type": "color"
+        },
+        "color.neutral.text.title": {
+          "value": "rgba(255,255,255,0.85)",
+          "type": "color"
+        },
+        "color.neutral.text.primary": {
+          "value": "rgba(255,255,255,0.85)",
+          "type": "color"
+        },
+        "color.neutral.text.secondary": {
+          "value": "rgba(255,255,255,0.45)",
+          "type": "color"
+        },
+        "color.neutral.text.disabled": {
+          "value": "rgba(255,255,255,0.30)",
+          "type": "color"
+        },
+        "color.neutral.border": {
+          "value": "rgba(255,255,255,0.20)",
+          "type": "color"
+        },
+        "color.neutral.divider": {
+          "value": "rgba(255,255,255,0.12)",
+          "type": "color"
+        },
+        "color.neutral.bg.base": {
+          "value": "rgba(255,255,255,0.08)",
+          "type": "color"
+        },
+        "color.neutral.bg.table-header": {
+          "value": "rgba(255,255,255,0.04)",
+          "type": "color"
+        }
+      }
+    },
+    "layout": {
+      "space/1": {
+        "value": 4,
+        "type": "float"
+      },
+      "space/2": {
+        "value": 8,
+        "type": "float"
+      },
+      "space/3": {
+        "value": 12,
+        "type": "float"
+      },
+      "space/4": {
+        "value": 16,
+        "type": "float"
+      },
+      "space/6": {
+        "value": 24,
+        "type": "float"
+      },
+      "space/8": {
+        "value": 32,
+        "type": "float"
+      },
+      "space/10": {
+        "value": 40,
+        "type": "float"
+      },
+      "space/12": {
+        "value": 48,
+        "type": "float"
+      },
+      "space/16": {
+        "value": 64,
+        "type": "float"
+      },
+      "radius/xs": {
+        "value": 2,
+        "type": "float"
+      },
+      "radius/sm": {
+        "value": 4,
+        "type": "float"
+      },
+      "radius/md": {
+        "value": 8,
+        "type": "float"
+      },
+      "radius/lg": {
+        "value": 12,
+        "type": "float"
+      },
+      "radius/full": {
+        "value": 9999,
+        "type": "float"
+      }
+    },
+    "typography": {
+      "font.family.primary": {
+        "value": "'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif",
+        "type": "string"
+      },
+      "font.family.secondary": {
+        "value": "'Montserrat', sans-serif",
+        "type": "string"
+      },
+      "font.size.xs": {
+        "value": 12,
+        "type": "float"
+      },
+      "font.size.sm": {
+        "value": 14,
+        "type": "float"
+      },
+      "font.size.md": {
+        "value": 16,
+        "type": "float"
+      },
+      "font.size.lg": {
+        "value": 20,
+        "type": "float"
+      },
+      "font.size.xl": {
+        "value": 24,
+        "type": "float"
+      },
+      "font.size.2xl": {
+        "value": 32,
+        "type": "float"
+      },
+      "font.size.3xl": {
+        "value": 40,
+        "type": "float"
+      },
+      "font.weight.regular": {
+        "value": 400,
+        "type": "float"
+      },
+      "font.weight.medium": {
+        "value": 500,
+        "type": "float"
+      },
+      "font.weight.semibold": {
+        "value": 600,
+        "type": "float"
+      },
+      "font.weight.bold": {
+        "value": 700,
+        "type": "float"
+      },
+      "font.lineHeight.tight": {
+        "value": 1.2,
+        "type": "float"
+      },
+      "font.lineHeight.normal": {
+        "value": 1.5,
+        "type": "float"
+      },
+      "font.lineHeight.loose": {
+        "value": 1.75,
+        "type": "float"
+      }
+    }
+  }
+}

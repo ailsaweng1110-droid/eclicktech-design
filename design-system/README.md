@@ -15,6 +15,8 @@
 
 ## 目录结构
 
+> 说明：多品牌设计 Token 包在**仓库根目录** [`../design-tokens`](../design-tokens/README.md)，与本 `design-system/` 目录并列。
+
 ```
 design-system/
 ├── README.md                                    本文档

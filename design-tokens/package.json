@@ -1,0 +1,32 @@
+{
+  "name": "@eclicktech-design/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-brand design tokens (Figma → JSON → dist). Brands: eclicktech, cyberklick, yeahmobi, zmaticoo.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ailsaweng1110-droid/eclicktech-design.git",
+    "directory": "design-tokens"
+  },
+  "scripts": {
+    "build": "node scripts/build-brand-tokens.js",
+    "apply:figma-snapshot": "node scripts/apply-figma-snapshot-to-brands.mjs",
+    "sync:figma": "node scripts/apply-figma-snapshot-to-brands.mjs && node scripts/build-brand-tokens.js",
+    "prepublishOnly": "node scripts/build-brand-tokens.js"
+  },
+  "files": [
+    "dist",
+    "brands",
+    "tokens.json",
+    "scripts"
+  ],
+  "exports": {
+    ".": "./dist/eclicktech.tokens.json",
+    "./eclicktech": "./dist/eclicktech.tokens.json",
+    "./cyberklick": "./dist/cyberklick.tokens.json",
+    "./yeahmobi": "./dist/yeahmobi.tokens.json",
+    "./zmaticoo": "./dist/zmaticoo.tokens.json",
+    "./package.json": "./package.json"
+  }
+}
