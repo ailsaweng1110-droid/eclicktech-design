@@ -19,7 +19,12 @@
     "dist",
     "brands",
     "tokens.json",
-    "scripts"
+    "scripts",
+    "DELIVERY.md",
+    "MAPPING.md",
+    "NAMING.md",
+    "CONTRIBUTING.md",
+    "README.md"
   ],
   "exports": {
     ".": "./dist/eclicktech.tokens.json",
