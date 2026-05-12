@@ -46,7 +46,7 @@
 | `color.neutral.bg.table-header` | `colorFillAlter` 或自定义                    |                    |
 
 
-**Dark**：在 `algorithm: theme.darkAlgorithm` 下同样映射 `dark.semantic.*`，或单独 `theme.dark` 对象；与 Figma `**Brand / Dark`** 对齐后在此表加一列「Dark 说明」。
+**Dark**：在 `algorithm: theme.darkAlgorithm` 下同样映射 `dark.semantic.*`，或单独 `theme.dark` 对象；与 Figma **Brand / Dark** 变量集对齐后在此表加一列「Dark 说明」。
 
 ---
 
