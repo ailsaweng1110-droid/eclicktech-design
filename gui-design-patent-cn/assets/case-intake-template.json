@@ -1,0 +1,51 @@
+{
+  "project_name": "Payment Flow Refresh",
+  "jurisdiction": "CN",
+  "client_name": "Example Co.",
+  "carrier_product": "smartphone",
+  "product_name_candidates": [
+    "smartphone payment confirmation graphical user interface",
+    "smartphone dynamic payment result graphical user interface"
+  ],
+  "gui_mode": "dynamic",
+  "design_scope": "partial",
+  "product_binding": "with_product",
+  "filing_goal": "defensive filing before launch",
+  "core_novelty": [
+    "a stacked amount card and confirmation button hierarchy",
+    "a continuous success transition across payment states"
+  ],
+  "interface_states": [
+    {
+      "name": "Home",
+      "purpose": "start state",
+      "is_main_view": true
+    },
+    {
+      "name": "Confirm Payment",
+      "purpose": "key frame",
+      "is_main_view": false
+    },
+    {
+      "name": "Payment Success",
+      "purpose": "end state",
+      "is_main_view": false
+    }
+  ],
+  "similar_designs": [
+    "dark theme",
+    "festival theme"
+  ],
+  "assets_available": [
+    "Figma screenshots",
+    "screen recording"
+  ],
+  "public_disclosure_risks": [
+    "2026-05-01 planned gray release"
+  ],
+  "ownership_notes": "employee-created work for hire",
+  "priority_notes": "",
+  "open_questions": [
+    "whether to keep the full-device frame to show position relationship"
+  ]
+}
