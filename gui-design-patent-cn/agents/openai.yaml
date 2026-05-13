@@ -1,0 +1,4 @@
+interface:
+  display_name: "GUI Patent CN"
+  short_description: "引导收集材料、分析界面状态，并生成中国 GUI 外观设计 Word 成稿"
+  default_prompt: "Use $gui-design-patent-cn to guide a China GUI design patent workflow: collect product and image materials, analyze GUI states, draft and review patent-ready interface descriptions, review single-state images, then generate the final Word document and matching JPG package after confirmation."
